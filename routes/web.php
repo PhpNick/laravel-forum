@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ThreadsController::class, 'index']);
+Route::get('threads/create', [ThreadsController::class, 'create']);
+Route::get('threads/{channel}/{thread}', [ThreadsController::class, 'show']);
+Route::delete('threads/{channel}/{thread}', [ThreadsController::class, 'destroy']);
+Route::post('threads', [ThreadsController::class, 'store']);
+Route::get('threads/{channel}', [ThreadsController::class, 'index']);
+
+Route::get('channels/create', [ChannelsController::class, 'create']);
+Route::post('channels', [ChannelsController::class, 'store']);
 
 Route::get('/admin', function () {
     return view('admin');

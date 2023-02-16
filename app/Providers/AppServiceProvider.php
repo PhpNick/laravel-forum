@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Channel;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $channels = Channel::all();
+        \View::share('channels', $channels);
     }
 }
