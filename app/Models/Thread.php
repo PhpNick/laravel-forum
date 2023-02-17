@@ -13,7 +13,7 @@ class Thread extends Model
     protected $guarded = [];
 
     /* Активная загрузка (eager loading)  */
-    protected $with = ['channel'];
+    protected $with = ['creator', 'channel'];
 
     protected static function boot()
     {
@@ -56,6 +56,12 @@ class Thread extends Model
     public function scopeFilter($query, ThreadFilters $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function hasUpdatesFor($user)
+    {
+        $key = $user->visitedThreadCacheKey($this);
+        return $this->updated_at > cache($key);
     }
 
 }

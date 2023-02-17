@@ -10,7 +10,17 @@
                         <div class="level">
                             <div class="flex lead">
                                 <a class="text-decoration-none" href="{{ $thread->path() }}">
-                                    {{ $thread->title }}
+                                    @if (auth()->check())
+                                        @if ($thread->hasUpdatesFor(auth()->user()))
+                                            <strong>
+                                                {{ $thread->title }}
+                                            </strong>
+                                        @else
+                                            {{ $thread->title }}
+                                        @endif
+                                    @else
+                                        {{ $thread->title }}
+                                    @endif
                                 </a>
                             </div>
 
