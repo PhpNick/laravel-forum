@@ -17,7 +17,9 @@
                         <h4>{{ $date }}</h4>
                     </div>
                     @foreach ($activity as $record)
-                        @include ("activities.{$record->type}", ['activity' => $record])
+                        @if (view()->exists("activities.{$record->type}"))
+                            @include ("activities.{$record->type}", ['activity' => $record])
+                        @endif
                     @endforeach
                 @endforeach
             </div>
