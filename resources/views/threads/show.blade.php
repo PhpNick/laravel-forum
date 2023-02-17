@@ -8,7 +8,7 @@
                     <div class="card-header">
                         <div class="level">
                             <span class="flex">
-                                <a href="">{{ $thread->creator->name }}</a> опубликовал:
+                                <a href="{{ route('user', $thread->creator) }}">{{ $thread->creator->name }}</a> опубликовал:
                                 {{ $thread->title }}
                             </span>
 
@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <p>
                             Тема была опубликована {{ $thread->created_at->format('d-m-Y') }} в {{ $thread->created_at->format('H:i:s') }}
-                            Опубликовал: <a href="#">{{ $thread->creator->name }}</a>.
+                            Опубликовал: <a href="{{ route('user', $thread->creator) }}">{{ $thread->creator->name }}</a>.
                             Сообщений в теме: {{ $thread->replies_count }}.
                         </p>
                     </div>

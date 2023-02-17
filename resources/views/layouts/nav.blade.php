@@ -53,7 +53,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a class="dropdown-item" href="{{ route('admin') }}">Админка</a>
+                                <a class="dropdown-item" href="{{ route('user', Auth::user()) }}">Моя активность</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Мой профиль</a>
