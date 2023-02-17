@@ -26,7 +26,7 @@
             <form method="POST" action="/replies/{{ $reply->id }}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-danger btn-xs">Удалить</button>
+                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
             </form>
         </div>
     @endcan
