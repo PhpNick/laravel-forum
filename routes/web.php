@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ChannelsController;
+use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +27,11 @@ Route::get('threads/{channel}', [ThreadsController::class, 'index']);
 
 Route::get('channels/create', [ChannelsController::class, 'create']);
 Route::post('channels', [ChannelsController::class, 'store']);
+
+Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store']);
+Route::delete('/replies/{reply}', [RepliesController::class, 'destroy']);
+
+Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
 
 Route::get('/admin', function () {
     return view('admin');
