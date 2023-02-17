@@ -12,27 +12,14 @@
                     </h1>
                 </div>
 
-                @foreach ($threads as $thread)
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <div class="level">
-                               <span class="flex">
-                                    <a href="{{ route('user', $thread->creator) }}">{{ $thread->creator->name }}</a> опубликовал:
-                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                               </span>
-
-                                <span>{{ $thread->created_at->format('d-m-Y | H:i:s') }}</span>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            {{ $thread->body }}
-                        </div>
+                @foreach ($activities as $date => $activity)
+                    <div class="pt-3 mb-4 border-bottom">
+                        <h4>{{ $date }}</h4>
                     </div>
+                    @foreach ($activity as $record)
+                        @include ("activities.{$record->type}", ['activity' => $record])
+                    @endforeach
                 @endforeach
-
-                {{ $threads->links() }}
-
             </div>
         </div>
     </div>
