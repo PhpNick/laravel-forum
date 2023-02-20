@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RepliesController extends Controller
 {
@@ -14,6 +15,10 @@ class RepliesController extends Controller
     }
     public function store($channelId, Thread $thread)
     {
+        if (Gate::denies('create', new Reply)) {
+            return back()->with('warning', 'Вы добавляете сообщения слишком часто. Сделайте перерыв. :)');
+        }
+
         $this->validate(request(), ['body' => 'required']);
         $thread->addReply([
             'body' => request('body'),
